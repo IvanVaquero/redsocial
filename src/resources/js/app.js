@@ -34,6 +34,7 @@ import router from '../js/Router/index.js'
 //     el: '#app',
 // });
 import { createApp } from 'vue'
+
 // import the root component App from a single-file component.
 import App from './App.vue'
 
