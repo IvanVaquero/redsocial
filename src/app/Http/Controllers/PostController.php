@@ -35,7 +35,21 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create([
+            'title' => $request->title,
+            'image' => $request->image,
+            'body' => $request->body,
+            'type_id' => $request->type_id,
+            'user_id' => $request->user_id,
+        ]);
+
+        $data = [
+            'data' => $post,
+            'status' => (bool) $post,
+            'message' => $post ? 'Post Created!' : 'Error Creating Post',
+        ];
+
+        return response()->json($data);
     }
 
     /**

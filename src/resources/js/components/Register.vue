@@ -8,12 +8,12 @@
             <h2>Picknet</h2>
         </div>
         <div class="inputBox">
-          <label for="userName">Username</label>
+          <label for="userName">Email</label>
           <input
             type="text"
             name="userName"
             id="userName"
-            placeholder="type your username"
+            placeholder="Email"
             required
           />
         </div>

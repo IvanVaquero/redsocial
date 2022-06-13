@@ -8,12 +8,12 @@
         </div>
       <form>
         <div class="inputBox">
-          <label for="userName">Username</label>
+          <label for="email">Email</label>
           <input
-            type="text"
-            name="userName"
-            id="userName"
-            placeholder="type your username"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="email"
             required
           />
         </div>
@@ -23,7 +23,7 @@
             type="password"
             name="userPassword"
             id="userPassword"
-            placeholder="type your password"
+            placeholder="password"
             required
           />
         </div>
