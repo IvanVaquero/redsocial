@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::resource('/post', 'PostController');
     Route::get('/posts', 'TypeController@posts');
 });
-
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
+

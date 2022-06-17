@@ -1,4 +1,3 @@
-
 <template>
   <div id="app">
     <!-- <h1>{{ msg }}</h1> -->
@@ -17,6 +16,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
@@ -26,10 +26,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  /* background-color: red; */
   /* margin-top: 60px; */
 }
 h1, h2 {
   font-weight: normal;
+}
+html{
+    background-color: #ebebeb;
 }
 
 @import'~bootstrap/dist/css/bootstrap.css';

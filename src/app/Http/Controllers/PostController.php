@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('/home');
+        return Post::orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -35,18 +36,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = Post::create([
-            'title' => $request->title,
-            'image' => $request->image,
-            'body' => $request->body,
-            'type_id' => $request->type_id,
-            'user_id' => $request->user_id,
-        ]);
+        $newPost = new Post;
+        $newPost->title =  $request->item["title"];
+        $newPost->image =  $request->item["image"];
+        $newPost->body =  $request->item["body"];
+        $newPost->type_id =  $request->item["type_id"];
+        $newPost->user_id =  $request->item["user_id"];
+        $newPost->save();
 
         $data = [
-            'data' => $post,
-            'status' => (bool) $post,
-            'message' => $post ? 'Post Created!' : 'Error Creating Post',
+            'data' => $newPost,
+            'status' => (bool) $newPost,
+            'message' => $newPost ? 'Post Created!' : 'Error Creating Post',
         ];
 
         return response()->json($data);
@@ -78,10 +79,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Post  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,8 +93,18 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $existingPost = Post::find($id);
+        if($existingPost){
+            $existingPost->delete();
+        }
+
+        $data = [
+            'status' => (bool) $existingPost,
+            'message' => $existingPost ? 'Post Deleted!' : 'Error Deleting Post',
+        ];
+
+        return response()->json($data);
     }
 }

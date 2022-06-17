@@ -8,11 +8,23 @@
             <h2>Picknet</h2>
         </div>
         <div class="inputBox">
-          <label for="userName">Email</label>
+          <label for="userName">Username</label>
           <input
+            v-model="data.name"
             type="text"
             name="userName"
             id="userName"
+            placeholder="Username"
+            required
+          />
+        </div>
+        <div class="inputBox">
+          <label for="userEmail">Email</label>
+          <input
+            v-model="data.email"
+            type="email"
+            name="userEmail"
+            id="userEmail"
             placeholder="Email"
             required
           />
@@ -20,6 +32,7 @@
         <div class="inputBox">
           <label for="userPassword">Password</label>
           <input
+            v-model="data.password"
             type="password"
             name="userPassword"
             id="userPassword"
@@ -30,6 +43,7 @@
         <div class="inputBox">
           <label for="userConfirmPassword">Confirm Password</label>
           <input
+            v-model="data.confirmPassword"
             type="password"
             name="userPassword"
             id="userConfirmPassword"
@@ -37,8 +51,8 @@
             required
           />
         </div>
-        <button type="submit" name="" style="float: left">Submit</button>
-        <router-link class="button" style="float: left" to="/"
+        <button type="submit" name="" style="float: left" @click.prevent="register">Register</button>
+        <router-link class="button color-red" style="float: left" to="/"
           >Login</router-link
         >
       </form>
@@ -48,13 +62,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "Register",
   data: function () {
     return {
-
+        data:{
+            name:'',
+            email:'',
+            password:'',
+            confirmPassword:''
+        },
+    errors:[]
     };
   },
+  methods:{
+    register(){
+        axios.post('/api/register', this.data).then(()=>{
+            this.$router.push({name:"Login"});
+        }).catch((error)=>{
+            this.errors = error.response.data.errors;
+        })
+    }
+  }
 };
 </script>
 
@@ -97,7 +128,7 @@ header {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 600px;
+    height: 680px;
     width: 430px;
     transform: translate(-50%, -50%);
     text-align: left;
@@ -153,6 +184,10 @@ a.button {
 .box button[type="submit"]:hover,
 a.button:hover {
   opacity: 0.8;
+}
+.color-red{
+    background-color: transparent !important;
+    float: right !important;
 }
 #tsparticles {
   position: fixed;

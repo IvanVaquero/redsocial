@@ -10,6 +10,7 @@
         <div class="inputBox">
           <label for="email">Email</label>
           <input
+            v-model="data.email"
             type="email"
             name="email"
             id="email"
@@ -20,6 +21,7 @@
         <div class="inputBox">
           <label for="userPassword">Password</label>
           <input
+            v-model="data.password"
             type="password"
             name="userPassword"
             id="userPassword"
@@ -28,8 +30,11 @@
           />
         </div>
         <div>
-          <button type="submit" name="" style="float: left">Submit</button>
-          <router-link class="button" style="float: left" to="/register"
+            <!-- No accede a la base de datos correctamente -->
+          <!-- <button type="submit" name="" style="float: left" @click="login" :disabled="isLogging" :loading="isLogging">{{isLogging ? 'Loging...':'Login'}}</button> -->
+          <router-link class="button" style="float: left" to="/home"
+            >Log in</router-link>
+          <router-link class="button color-red" style="float: left" to="/register"
             >Register</router-link
           >
         </div>
@@ -44,9 +49,23 @@ export default {
   name: "Login",
   data: function () {
     return {
-
+        data:{
+            email:'',
+            password:''
+        },
+        isLogging: false,
     };
   },
+
+  methods:{
+     login(){
+        axios.post('/api/login', this.data).then(()=>{
+            this.$router.push({name:"Home"});
+        }).catch((error)=>{
+            this.errors = error.response.data.errors;
+        })
+    }
+  }
 };
 </script>
 
@@ -140,6 +159,10 @@ a.button {
   text-decoration: none;
   margin: 2px 10px 2px 0;
   display: inline-block;
+}
+.color-red{
+    background-color: transparent !important;
+    float: right !important;
 }
 .box input[type="submit"]:hover,
 .box button[type="submit"]:hover,
