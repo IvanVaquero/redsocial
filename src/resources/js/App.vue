@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <!-- <h1>{{ msg }}</h1> -->
-    <!-- <router-link to="/">Login</router-link>
-    <router-link to="/home">Home</router-link> -->
     <router-view/>
   </div>
 </template>

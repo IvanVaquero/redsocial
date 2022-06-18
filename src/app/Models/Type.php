@@ -13,7 +13,7 @@ class Type extends Model
 
     protected $fillable = ['name'];
 
-    public function tasks() {
-        return $this->hasMany(Task::class);
+    public function posts() {
+        return $this->hasMany(Post::class);
     }
 }

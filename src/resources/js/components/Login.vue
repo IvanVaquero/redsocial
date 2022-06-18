@@ -31,7 +31,7 @@
         </div>
         <div>
             <!-- No accede a la base de datos correctamente -->
-          <!-- <button type="submit" name="" style="float: left" @click="login" :disabled="isLogging" :loading="isLogging">{{isLogging ? 'Loging...':'Login'}}</button> -->
+          <button type="submit" name="" style="float: left" @click="login" :disabled="isLogging" :loading="isLogging">{{isLogging ? 'Loging...':'Login'}}</button>
           <router-link class="button" style="float: left" to="/home"
             >Log in</router-link>
           <router-link class="button color-red" style="float: left" to="/register"
